@@ -1,4 +1,5 @@
 import React from "react";
+import ResultsMap from "./ResultsMap";
 import "./App.css";
 
 export default class App extends React.Component {
@@ -6,10 +7,13 @@ export default class App extends React.Component {
     super();
 
     this.state = {
-      inputField: "lover",
+      inputField: "",
       results: []
+      // ,
+      // isLoading: false
     };
     this.getResults = this.getResults.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   // To search for song, concatenate inputFiled after 'term=' in URL
   // AND
@@ -33,39 +37,61 @@ export default class App extends React.Component {
       .then(res => res.json())
       .then(json =>
         this.setState({
-          results: json
+          results: json.results
         })
       );
   }
 
-  // handleChange(prop, val) {
-  //   this.setState({
-  //     [prop]: val
-  //   });
-  // }
+  handleChange(e) {
+    this.setState({
+      inputField: e.target.value
+    });
+    this.getResults();
+  }
 
   // handleSubmit(e) {
   //   e.preventDefault();
-  //   this.props.updateTask(
-  //     this.props.tasks.task_name,
-  //   );
+  //   this.getResults();
   // }
 
   // searching = e => {
   //   this.setState({ filterer: e.target.value.substr(0, 20) });
   // };
   render() {
-    // let mappedResults;
     console.log("state", this.state.results);
+    console.log("input", this.state.inputField);
+    let mappedResults = this.state.results;
+    // if (!mappedResults.length) {
+    //   return (
+    //     <div className="App">
+    //       <h1>iTunes Finder</h1>
+    //       <input
+    //         placeholder="Song Search.."
+    //         className="input"
+    //         type="text"
+    //         onChange={e => this.handleChange(e)}
+    //       ></input>
+    //     </div>
+    //   );
+    // }
     return (
       <div className="App">
         <header className="App-header">
           <h1>iTunes Finder</h1>
         </header>
-        <div>
-          <input></input>
-          <button></button>
-        </div>
+        <section className="search-bar">
+          {/* <form className="form" id="search-song-form"> */}
+          <input
+            placeholder="Song Search.."
+            className="input"
+            type="text"
+            onChange={e => this.handleChange(e)}
+          ></input>
+          {/* <button className="button" onClick={this.handleSubmit}>
+              Submit
+            </button> */}
+          {/* </form> */}
+        </section>
         <table>
           <thead>
             <tr>
@@ -76,11 +102,11 @@ export default class App extends React.Component {
           </thead>
           {/* insert map below here for first three indexes of search results */}
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            {mappedResults.map(resultsMapToComponent => {
+              return (
+                <ResultsMap resultsMapToComponent={resultsMapToComponent} />
+              );
+            })}
           </tbody>
           {/* map above here */}
         </table>

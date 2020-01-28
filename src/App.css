@@ -6,3 +6,33 @@
   align-items: center;
   flex-direction: column;
 }
+
+/* .search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid;
+} */
+
+.input {
+  height: 75%;
+}
+
+.button {
+  height: 100%;
+}
+
+table {
+  height: 20vh;
+  width: 45vw;
+  border: solid;
+}
+
+th {
+  font-weight: 900;
+  text-decoration: underline;
+}
+
+td {
+  text-align: left;
+}
