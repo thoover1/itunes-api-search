@@ -7,13 +7,6 @@
   flex-direction: column;
 }
 
-/* .search-bar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: solid;
-} */
-
 .input {
   height: 75%;
 }
@@ -23,16 +16,32 @@
 }
 
 table {
-  height: 20vh;
-  width: 45vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+tr {
+  height: 100%;
+  width: 85vw;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border: solid;
+  padding: 5px;
 }
 
 th {
+  width: 33%;
   font-weight: 900;
   text-decoration: underline;
+  overflow: scroll;
 }
 
 td {
-  text-align: left;
+  width: 33%;
+  text-align: center;
+  overflow: scroll;
 }
