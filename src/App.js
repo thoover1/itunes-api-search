@@ -16,8 +16,8 @@ export default class App extends React.Component {
     this.getResults();
   }
 
-  getResults() {
-    fetch(
+  async getResults() {
+    await fetch(
       `https://itunes.apple.com/search?media=music&entity=song&term=${this.state.inputField}&limit=3`
     )
       .then(res => res.json())
@@ -25,7 +25,8 @@ export default class App extends React.Component {
         this.setState({
           results: json.results
         })
-      );
+      )
+      .catch(err => console.log(err));
   }
 
   handleChange(e) {
